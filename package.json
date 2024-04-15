@@ -1,0 +1,30 @@
+{
+  "name": "gamification-ionic",
+  "version": "1.0.2",
+  "description": "SDK for gamification for ionic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ionic-gamification",
+    "gamification",
+    "gamification-ionic",
+    "ionic-gamification"
+  ],
+  "peerDependencies": {
+    "aes-everywhere": "^1.0.0",
+    "base-64": "^1.0.0",
+    "@capacitor/screen-orientation": "^5.0.7"
+  },
+  "author": "Nilede Technologies",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheLogicalBanya/GamificationIONIC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheLogicalBanya/GamificationIONIC/issues"
+  },
+  "homepage": "https://github.com/TheLogicalBanya/GamificationIONIC#readme"
+}
