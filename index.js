@@ -9,7 +9,7 @@ const renderHtml = async (finalUrl) => {
                 id="frame_close_${config.id}" 
                 data-id="${config.id}"
                 class="close_btn" 
-                style="height: 36px; width: 33px;    display: flex;
+                style="color:#fff!important;height: 36px; width: 33px;    display: flex;
     align-items: center;
     font-size: 35px;
                  position: absolute; right: 7px; top: 25px;z-index: 99999">×</div>
