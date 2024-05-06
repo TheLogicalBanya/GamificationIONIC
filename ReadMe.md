@@ -42,7 +42,7 @@ const config = {
   username: "",
   keyString: "",
   appId: 'app' /* pass div id in used index.html like  <body> <div id="app"></div>< /body> */
-  utm_param1 :'' // optional parameters 
+  utm_param1: 'ionic' // optional parameters 
   utm_param2 :'' // optional parameters 
   utm_param3 :'' // optional parameters 
   utm_param4 :'' // optional parameters 
@@ -51,7 +51,6 @@ const config = {
 };
 Gamification.init(config);
 ```
-
 
 ```bash
 Required parameters
@@ -62,12 +61,13 @@ key: "",
 userID: "",
 username: "",
 keyString: "",
+utm_param1: 'ionic'
 
 Take above parameters from provider.
 
 ```
 
-Create new method to open application.
+Create new method to open & close application.
 
 ```bash
 
@@ -84,23 +84,19 @@ const openApp = async () => {
 
   await Gamification.run();
   isOpen.value = true;
-
-  // for close gamification window
-  const divElement = document.querySelector('.close_btn');
-  divElement.addEventListener('click', async () => {
-    await Gamification.close(divElement.dataset.id);
-    isOpen.value = false;
-    
-    //this code if need screen rotation unlock start
-    try {
-      await ScreenOrientation.unlock();
-    } catch (e) {
-      console.error(e.message)
-    }
-    //this code for screen rotation unlock end
-  });
-
 }
+
+// for close gamification window
+window.addEventListener('message', async (event) => {
+  // Check origin if needed for security
+  const {data} = event;
+  if (data === 'close-app') {
+    await Gamification.close();
+    await ScreenOrientation.unlock();
+  }
+  // Handle the received data
+});
+
 ```
 
 Create method for closing application.
@@ -141,6 +137,7 @@ Gamification.init({
   username: "",
   keyString: "",
   appId: 'app', /* pass div id in used index.html like  <body> <div id="app"></div>< /body> */
+  utm_param1: 'ionic'
   // style: {
   //   height: 'calc(100vh - 70px)',
   //   top: '70px',
@@ -160,21 +157,18 @@ const openApp = async () => {
   await Gamification.run();
   isOpen.value = true;
 
-  // for close gamification window
-  const divElement = document.querySelector('.close_btn');
-  divElement.addEventListener('click', async () => {
-    await Gamification.close(divElement.dataset.id);
-    isOpen.value = false;
-    //this code if need screen rotation unlock start
-    try {
-      await ScreenOrientation.unlock();
-    } catch (e) {
-      console.error(e.message)
-    }
-    //this code if need screen rotation unlock end
-  });
-
 }
+
+  // for close gamification window
+window.addEventListener('message', async (event) => {
+  // Check origin if needed for security
+  const {data} = event;
+  if (data === 'close-app') {
+    await Gamification.close();
+    await ScreenOrientation.unlock();
+  }
+  // Handle the received data
+});
 </script>
 
     
@@ -183,7 +177,6 @@ const openApp = async () => {
 Also you can pass another optional parameters <br>
 
 ```bash
-1.utm_param1 <br>
 2.utm_param2 <br>
 3.utm_param3 <br>
 4.utm_param4 <br>

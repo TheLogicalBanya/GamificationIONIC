@@ -5,14 +5,6 @@ import base64 from 'base-64';
 
 const renderHtml = async (finalUrl) => {
     const dynamicContent = `
-                <div 
-                id="frame_close_${config.id}" 
-                data-id="${config.id}"
-                class="close_btn" 
-                style="color:#fff!important;height: 36px; width: 33px;    display: flex;
-    align-items: center;
-    font-size: 35px;
-                 position: absolute; right: 7px; top: 25px;z-index: 99999">×</div>
                   <iframe
                 id="frame_gamification_${config.id}" src="${finalUrl}"
                 style="height:${config?.style?.height ?? '100vh'};width:100%;border:none;background: #f1f1f1"/>
@@ -39,6 +31,7 @@ const renderHtml = async (finalUrl) => {
 
 
     scriptElement.innerHTML = `
+
     function customClickHandler(id) {
         const dynamicDiv = document.getElementById(id);
         if (dynamicDiv) {
@@ -104,6 +97,4 @@ const Gamification = {
         return Gamification;
     }
 }
-
-
 export default Gamification;
